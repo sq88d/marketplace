@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block content %}
+<p></p>
+<h1>Каталог магазина</h1>
+
+{% if current_user.is_authenticated %}
+    <!-- Справа сделать кнопки Корзина и Выход из ЛК -->
+    <p></p>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col"><a href="/product/1"><img src="static\images\bear-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/2"><img src="static\images\brachiosaurus-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/3"><img src="static\images\brown-bear-toy.jpg" alt=""></a></div>
+    </div>
+    
+    <p></p>
+
+    <div class="row">
+        <div class="col"><a href="/product/4"><img src="static\images\crocodile-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/5"><img src="static\images\husky-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/6"><img src="static\images\mouse-toy.jpg" alt=""></a></div>
+    </div>
+    
+    <p></p>
+
+    <div class="row">
+        <div class="col"><a href="/product/7"><img src="static\images\panda-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/8"><img src="static\images\panther-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/9"><img src="static\images\rabbit-toy.jpg" alt=""></a></div>
+    </div>
+    
+    <p></p>
+
+    <div class="row">
+        <div class="col"><a href="/product/10"><img src="static\images\shark-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/11"><img src="static\images\snake-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/12"><img src="static\images\stegosaurus-toy.jpg" alt=""></a></div>
+    </div>
+    
+    <p></p>
+
+    <div class="row">
+        <div class="col"><a href="/product/13"><img src="static\images\toasts-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/14"><img src="static\images\triceratops-toy.jpg" alt=""></a></div>
+        <div class="col"><a href="/product/15"><img src="static\images\tyrannosaurus-toy.jpg" alt=""></a></div>
+    </div>
+  </div>
+
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col order-last">
+            <a href="/login"> <img src="static\images\bear-toy.jpg" alt=""> </a>
+        </div>
+
+
+        <div class="col">
+            <img src="static\images\brachiosaurus-toy.jpg" alt="">
+        </div>
+
+        <div class="col order-first">
+            <img src="static\images\brown-bear-toy.jpg" alt="">
+        </div>
+  </div>
+</div>-->
+
+<!-- {% for item in news %}
+        <div class="col-md6 border rounded">
+            <h2>{{ item.title }}</h2>
+            <div>
+                {{ item.content }}
+            </div>
+            <div>
+                Автор - {{ item.user.name }}, Дата написания - {{ item.created_date }}
+            </div>
+            {% if current_user.is_authenticated and current_user == item.user %}
+                <div>
+                    <a href="/news/{{ item.id }}" class="btn btn-warning">Изменить</a>
+                    <a href="/news_delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %} -->
+{% endblock %}
