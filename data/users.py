@@ -6,7 +6,7 @@ from .db_session import SqlAlchemyBase
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-class User(SqlAlchemyBase):
+class User(SqlAlchemyBase, UserMixin):
     __tablename__ = 'users'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
@@ -19,11 +19,11 @@ class User(SqlAlchemyBase):
                                         nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.datetime.now)
-    shopping_cart = sqlalchemy.Column(sqlalchemy.String,
-                                      nullable=True)
+
+    products = orm.relation("Product", back_populates='user')
 
     def __repr__(self):
-        return f'<User> {self.id} {self.name} {self.email}'
+        return f'User {self.id}: {self.name} {self.email} {self.created_date}'
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
