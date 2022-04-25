@@ -21,7 +21,7 @@ app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-app.config['SECRET_KEY'] = 'I am Giraffe!'
+app.config['SECRET_KEY'] = ''
 
 
 # главная страница
