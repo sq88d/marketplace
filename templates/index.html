@@ -1,85 +1,191 @@
-{% extends "base.html" %} {% block content %}
-<p></p>
-<h1>Каталог магазина</h1>
-
-{% if current_user.is_authenticated %}
-    <!-- Справа сделать кнопки Корзина и Выход из ЛК -->
+{% extends "base.html" %}
+{% block content %}
     <p></p>
-{% endif %}
+    <h1>Товары</h1>
 
-<div class="container">
-    <div class="row">
-        <div class="col"><a href="/product/1"><img src="static\images\bear-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/2"><img src="static\images\brachiosaurus-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/3"><img src="static\images\brown-bear-toy.jpg" alt=""></a></div>
-    </div>
-    
-    <p></p>
-
-    <div class="row">
-        <div class="col"><a href="/product/4"><img src="static\images\crocodile-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/5"><img src="static\images\husky-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/6"><img src="static\images\mouse-toy.jpg" alt=""></a></div>
-    </div>
-    
-    <p></p>
-
-    <div class="row">
-        <div class="col"><a href="/product/7"><img src="static\images\panda-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/8"><img src="static\images\panther-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/9"><img src="static\images\rabbit-toy.jpg" alt=""></a></div>
-    </div>
-    
-    <p></p>
-
-    <div class="row">
-        <div class="col"><a href="/product/10"><img src="static\images\shark-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/11"><img src="static\images\snake-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/12"><img src="static\images\stegosaurus-toy.jpg" alt=""></a></div>
-    </div>
-    
-    <p></p>
-
-    <div class="row">
-        <div class="col"><a href="/product/13"><img src="static\images\toasts-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/14"><img src="static\images\triceratops-toy.jpg" alt=""></a></div>
-        <div class="col"><a href="/product/15"><img src="static\images\tyrannosaurus-toy.jpg" alt=""></a></div>
-    </div>
-  </div>
-
-
-<!-- <div class="container">
-    <div class="row">
-        <div class="col order-last">
-            <a href="/login"> <img src="static\images\bear-toy.jpg" alt=""> </a>
-        </div>
-
-
-        <div class="col">
-            <img src="static\images\brachiosaurus-toy.jpg" alt="">
-        </div>
-
-        <div class="col order-first">
-            <img src="static\images\brown-bear-toy.jpg" alt="">
-        </div>
-  </div>
-</div>-->
-
-<!-- {% for item in news %}
-        <div class="col-md6 border rounded">
-            <h2>{{ item.title }}</h2>
-            <div>
-                {{ item.content }}
-            </div>
-            <div>
-                Автор - {{ item.user.name }}, Дата написания - {{ item.created_date }}
-            </div>
-            {% if current_user.is_authenticated and current_user == item.user %}
-                <div>
-                    <a href="/news/{{ item.id }}" class="btn btn-warning">Изменить</a>
-                    <a href="/news_delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
+    {% if not current_user.is_authenticated %}
+        <p></p>
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for item in products %}
+                <div class="card" style="width: 18rem;">
+                    {% if not item.image %}
+                        <img src="static\images\no-photo.png" class="card-img-top" alt="...">
+                    {% else %}
+                        <img src=" {{ item.image }} " class="card-img-top" alt="...">
+                    {% endif %}
+        
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.content }}</p>
+                    </div>
+        
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> <b> {{ item.price }} руб. </b></li>
+                    </ul>
+        
+                    <div class="card-body">
+                        <a href="" class="btn btn-success">Купить</a>
+                    </div>
                 </div>
-            {% endif %}
+            {% endfor %}
         </div>
-    {% endfor %} -->
+    
+    {% else %}
+
+        <p></p>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\bear-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Медведь</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\brachiosaurus-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Брахиозавр</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\brown-bear-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Бурый медведь</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\crocodile-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Крокодил</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\husky-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Хаски</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\mouse-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Мышь</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\panda-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Панда</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\panther-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Пантера</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\rabbit-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Кролик</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\shark-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Акула</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\snake-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Змея</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\stegosaurus-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Стегозавр</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\toasts-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Тосты</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\triceratops-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Трицератопс</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card">
+                    <img src="static\images\tyrannosaurus-toy.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Тираннозавр</h5>
+                        <a href="" class="btn btn-danger">Удалить товар</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+
 {% endblock %}
