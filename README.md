@@ -1,4 +1,4 @@
-<h1 align="center">Online store</h1>
+<h1 align="center">Marketplace</h1>
 
 ## Project Name and Short Description
 
